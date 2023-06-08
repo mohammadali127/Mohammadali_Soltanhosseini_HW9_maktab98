@@ -31,6 +31,14 @@ contact_menu = {
             'action': edit_an_existing_contact_action,
         },
         {
+            'name': 'Search By Name In Contacts',
+            'action': search_by_name_in_contacts,
+        },
+        {
+            'name': 'Search By Email In Contacts',
+            'action': search_by_email_in_contacts,
+        },
+        {
             'name': 'Delete a Contact',
             'action': delete_a_contact_action,
         },
@@ -49,6 +57,6 @@ def main():
         root_user_menu()
     except UserLoginSignal:
         print("User Logged in Successfully.")
-    root_contact_menu
+    root_contact_menu()
 
 main()

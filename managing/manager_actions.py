@@ -3,9 +3,9 @@ from .models import User, Contact
 
 def add_a_new_contact_action():
     print("Enter event's detail below:")
-    name = get_input("Name: ", target_type=int) # regex with target type
+    name = get_input("Name: ", target_type=str) # regex with target type
     email = get_input("Email: ", target_type=str)
-    phone = get_input("Phone: ", target_type=int)
+    phone = get_input("Phone: ", target_type=str)
     contact = Contact(name, email, phone)
     contact.add() #need to defined in add function
     print("Contact's created.\n")
@@ -31,10 +31,10 @@ def delete_a_contact_action():
         print("Contact not found.")
         return
     contact.delete(name)
-    print("Contact's edited.\n")
+    print("Contact's deleted.\n")
 
 def view_all_contacts_action():
-    all_contacts = Contact.get_all()  # list or generator
+    all_contacts = list(Contact.get_all())  # list or generator
     for i, event in enumerate(all_contacts):
         print(i + 1, event)  # __str__
 
@@ -66,3 +66,21 @@ def modify_account():
     password = get_input("Enter the New Password: ", target_type=password_validation)
     user.modify(username, password)
     print("User was Modified.")
+
+def search_by_name_in_contacts():
+    name = get_input("Enter the Name: ", target_type=str)
+    try:
+        contact = Contact.find_by_name(name)
+    except:
+        print("Contact not found.")
+        return
+    print(contact)
+
+def search_by_email_in_contacts():
+    email = get_input("Enter the Email: ", target_type=str)
+    try:
+        contact = Contact.find_by_email(email)
+    except:
+        print("Contact not found.")
+        return
+    print(contact)
