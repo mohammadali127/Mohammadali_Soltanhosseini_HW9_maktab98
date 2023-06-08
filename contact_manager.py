@@ -39,6 +39,10 @@ contact_menu = {
             'action': search_by_email_in_contacts,
         },
         {
+            'name': 'Group The Contacts Into Categories',
+            'action': group_contacts_into_categories,
+        },
+        {
             'name': 'Delete a Contact',
             'action': delete_a_contact_action,
         },

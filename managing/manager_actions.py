@@ -6,8 +6,9 @@ def add_a_new_contact_action():
     name = get_input("Name: ", target_type=str) # regex with target type
     email = get_input("Email: ", target_type=str)
     phone = get_input("Phone: ", target_type=str)
+    category = get_input("Category: ", target_type=str)
     notes = get_input("Notes: ", target_type=str)
-    contact = Contact(name, email, phone, notes)
+    contact = Contact(name, email, phone, notes, category)
     contact.add() #need to defined in add function
     print("Contact's created.\n")
 
@@ -21,8 +22,9 @@ def edit_an_existing_contact_action():
     name = get_input("Enter the New Name: ", target_type=str)  # regex with target type
     email = get_input("Enter the New Email: ", target_type=email_validation)
     phone = get_input("Enter the New Phone: ", target_type=phone_validation)
+    category = get_input("Enter the New Category: ", target_type=str)
     notes = get_input("Enter the New Notes: ", target_type=str)
-    contact.edit(name, email, phone, notes)
+    contact.edit(name, email, phone, notes, category)
     print("Contact's edited.\n")
 
 def delete_a_contact_action():
@@ -37,8 +39,8 @@ def delete_a_contact_action():
 
 def view_all_contacts_action():
     all_contacts = list(Contact.get_all())  # list or generator
-    for i, event in enumerate(all_contacts):
-        print(i + 1, event)  # __str__
+    for i, contact in enumerate(all_contacts):
+        print(i + 1, contact)  # __str__
 
 def create_new_account():
     username = get_input("Enter the Username: ", target_type=username_validation)
@@ -86,3 +88,12 @@ def search_by_email_in_contacts():
         print("Contact not found.")
         return
     print(contact)
+
+def group_contacts_into_categories():
+    category = get_input("Enter the Category: ", target_type=str)
+    all_contacts = list(Contact.get_all())
+    i = 1
+    for contact in all_contacts:
+        if contact.category == category:
+            print(i + 1, contact)
+            i+=1

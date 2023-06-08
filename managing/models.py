@@ -1,11 +1,12 @@
 import pickle
 class Contact:
 
-    def __init__(self,name,email,phone, notes=""):
+    def __init__(self,name,email,phone, notes="", category=""):
         self.name = name
         self.email = email
         self.phone = phone
         self.notes = notes
+        self.category = category
 
     def add(self):
          contacts = list(Contact.get_all())
@@ -19,7 +20,7 @@ class Contact:
              f1.close()
 
 
-    def edit(self,name, email, phone, notes=""):
+    def edit(self,name, email, phone, notes="", category=""):
         contacts = list(Contact.get_all())
         for i,contact in enumerate(contacts):
             if contact.name == self.name:
@@ -27,6 +28,7 @@ class Contact:
                 contacts[i].email = email
                 contacts[i].phone = phone
                 contacts[i].notes = notes
+                contacts[i].category = category
         f1 = open("./data/contacts.pickle",'wb')
         f1.seek(0)
         f1.truncate()
@@ -73,7 +75,7 @@ class Contact:
                     break
 
     def __str__(self):
-        return f"Contact #{self.name} - {self.email} - {self.phone} - notes: {self.notes}"
+        return f"Contact #{self.name} - {self.email} - {self.phone} - notes: {self.notes} - category: {self.category}"
 
 class User:
 
