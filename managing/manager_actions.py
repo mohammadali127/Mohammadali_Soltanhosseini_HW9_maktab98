@@ -6,7 +6,8 @@ def add_a_new_contact_action():
     name = get_input("Name: ", target_type=str) # regex with target type
     email = get_input("Email: ", target_type=str)
     phone = get_input("Phone: ", target_type=str)
-    contact = Contact(name, email, phone)
+    notes = get_input("Notes: ", target_type=str)
+    contact = Contact(name, email, phone, notes)
     contact.add() #need to defined in add function
     print("Contact's created.\n")
 
@@ -17,10 +18,11 @@ def edit_an_existing_contact_action():
     except:
         print("Contact not found.")
         return
-    name = get_input("Enter the Name: ", target_type=str)  # regex with target type
-    email = get_input("Email: ", target_type=email_validation)
-    phone = get_input("Phone: ", target_type=phone_validation)
-    contact.edit(name, email, phone)
+    name = get_input("Enter the New Name: ", target_type=str)  # regex with target type
+    email = get_input("Enter the New Email: ", target_type=email_validation)
+    phone = get_input("Enter the New Phone: ", target_type=phone_validation)
+    notes = get_input("Enter the New Notes: ", target_type=str)
+    contact.edit(name, email, phone, notes)
     print("Contact's edited.\n")
 
 def delete_a_contact_action():
