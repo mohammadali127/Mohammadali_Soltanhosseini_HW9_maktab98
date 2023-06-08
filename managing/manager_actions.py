@@ -1,5 +1,6 @@
 from menu.utils import *
 from .models import User, Contact
+import csv
 
 def add_a_new_contact_action():
     print("Enter event's detail below:")
@@ -97,3 +98,15 @@ def group_contacts_into_categories():
         if contact.category == category:
             print(i + 1, contact)
             i+=1
+
+def Export_to_csv_file():
+    name = get_input("Enter the Name: ", target_type=str)
+    try:
+        contact = Contact.find_by_name(name)
+    except:
+        print("Contact not found.")
+        return
+    with open('./data/contacts.csv', 'a', ) as f:
+        writer = csv.writer(f)
+        writer.writerow([contact.name, contact.email, contact.phone, contact.notes, contact.category])
+    print("Contact was Exported.")

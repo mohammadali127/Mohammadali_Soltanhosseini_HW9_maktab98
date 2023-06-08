@@ -43,6 +43,10 @@ contact_menu = {
             'action': group_contacts_into_categories,
         },
         {
+            'name': 'Export To CSV File',
+            'action': Export_to_csv_file,
+        },
+        {
             'name': 'Delete a Contact',
             'action': delete_a_contact_action,
         },
